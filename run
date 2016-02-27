@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+if [ ! -d /srv/nginx/certs || ! -d /srv/nginx/templates ]; then
+  cd /srv
+  mkdir -p nginx/certs
+  mkdir -p nginx/templates
+fi
+cd /srv/nginx
+./get_default_template
+docker-compose up -d

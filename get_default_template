@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+if [ ! -f /srv/nginx/templates/nginx.tmpl ]; then
+  wget https://raw.githubusercontent.com/jwilder/nginx-proxy/master/nginx.tmpl -O /srv/nginx/templates/nginx.tmpl
+fi
