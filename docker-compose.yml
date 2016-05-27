@@ -4,10 +4,11 @@ services:
     image: nginx
     container_name: nginx
     volumes:
-      - /etc/nginx/conf.d
-      - /etc/nginx/vhost.d
-      - /usr/share/nginx/html
+      - /srv/docker-state/nginx/conf.d:/etc/nginx/conf.d
+      - /srv/docker-state/nginx/vhost.d:/etc/nginx/vhost.d
+      - /srv/docker-state/nginx/html:/usr/share/nginx/html
       - /srv/nginx/certs:/etc/nginx/certs:ro
+      - /srv/nginx/proxy.conf:/etc/nginx/proxy.conf:ro
     ports:
       - "80:80"
       - "443:443"
