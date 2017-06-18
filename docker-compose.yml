@@ -1,20 +1,22 @@
 version: '2'
 services:
   nginx:
-    image: nginx
+    image: "nginx:1.12-alpine"
     container_name: nginx
     volumes:
       - /etc/nginx/conf.d
-      - /etc/nginx/vhost.d
+      - /srv/nginx/vhost.d:/etc/nginx/vhost.d
       - /usr/share/nginx/html
       - /srv/nginx/certs:/etc/nginx/certs:ro
     ports:
       - "80:80"
       - "443:443"
     restart: always
+    logging:
+      driver: none
 
   nginx-gen:
-    image: jwilder/docker-gen
+    image: jwilder/docker-gen:0.7.3
     container_name: nginx-gen
     command: "-notify-sighup nginx -watch -only-exposed -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf"
     volumes_from: [nginx]
@@ -24,7 +26,7 @@ services:
     restart: always
 
   nginx-letsencrypt:
-    image: jrcs/letsencrypt-nginx-proxy-companion
+    image: jrcs/letsencrypt-nginx-proxy-companion:v1.5
     container_name: nginx-letsencrypt
     depends_on: [nginx-gen]
     volumes_from: [nginx]
