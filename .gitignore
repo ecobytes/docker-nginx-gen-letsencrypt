@@ -1,2 +1,3 @@
 certs/
 templates/
+vhost.d/
