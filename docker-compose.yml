@@ -4,7 +4,7 @@ services:
     image: "nginx:1.12-alpine"
     container_name: nginx
     volumes:
-      - /etc/nginx/conf.d
+      - /srv/nginx/conf.d:/etc/nginx/conf.d
       - /srv/nginx/vhost.d:/etc/nginx/vhost.d
       - /usr/share/nginx/html
       - /srv/nginx/certs:/etc/nginx/certs:ro
