@@ -1,3 +1,5 @@
 certs/
 templates/
 vhost.d/
+conf.d/
+
