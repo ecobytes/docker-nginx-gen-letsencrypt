@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-if [ ! -d /srv/nginx/certs ] || [ ! -d /srv/nginx/templates ]; then
+if [ ! -d ./certs ] || [ ! -d ./templates ]; then
   mkdir -p certs
   mkdir -p templates
 fi
