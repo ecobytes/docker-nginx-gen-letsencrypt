@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 if [ ! -f ./templates/nginx.tmpl ]; then
-  wget https://raw.githubusercontent.com/ecobytes/nginx-proxy/master/nginx.tmpl -O ./templates/nginx.tmpl
+  wget https://github.com/jwilder/nginx-proxy/raw/master/nginx.tmpl -O ./templates/nginx.tmpl
 fi
