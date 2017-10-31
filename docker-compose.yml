@@ -47,5 +47,5 @@ services:
 
 networks:
   frontend-web:
-    externa:
+    external:
       name: frontend-web
