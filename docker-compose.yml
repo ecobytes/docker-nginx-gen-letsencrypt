@@ -17,7 +17,7 @@ services:
     logging:
       driver: none
     networks:
-      - default
+      - frontend-web
 
   nginx-gen:
     image: jwilder/docker-gen:0.7.3
@@ -29,7 +29,7 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
     restart: always
     networks:
-      - default
+      - frontend-web
 
   nginx-letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion:v1.5
@@ -43,8 +43,9 @@ services:
       - NGINX_DOCKER_GEN_CONTAINER=nginx-gen
     restart: always
     networks:
-      - default
+      - frontend-web
 
 networks:
-  default:
-    driver: bridge
+  frontend-web:
+    externa:
+      name: frontend-web
