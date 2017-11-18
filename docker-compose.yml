@@ -10,6 +10,8 @@ services:
       - ./html:/usr/share/nginx/html
       - ./certs:/etc/nginx/certs:ro
       - ./proxy.conf:/etc/nginx/proxy.conf:ro
+    environment:
+      - DEFAULT_HOST=
     ports:
       - "80:80"
       - "443:443"
@@ -32,7 +34,7 @@ services:
       - frontend-web
 
   nginx-letsencrypt:
-    image: jrcs/letsencrypt-nginx-proxy-companion:v1.5
+    image: jrcs/letsencrypt-nginx-proxy-companion:latest
     container_name: nginx-letsencrypt
     depends_on: [nginx-gen]
     volumes_from: [nginx]
@@ -41,6 +43,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       - NGINX_DOCKER_GEN_CONTAINER=nginx-gen
+      - ACME_TOS_HASH=cc88d8d9517f490191401e7b54e9ffd12a2b9082ec7a1d4cec6101f9f1647e7b
     restart: always
     networks:
       - frontend-web
